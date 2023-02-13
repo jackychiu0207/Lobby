@@ -7,6 +7,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import static org.bukkit.Bukkit.broadcastMessage;
+
 public final class Lobby extends JavaPlugin implements Listener {
 
     @Override
@@ -23,6 +25,7 @@ public final class Lobby extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        event.setJoinMessage("Welcome to Myster's Server, " + event.getPlayer().getDisplayName() + ".");
+        System.out.println("test");
+        System.out.println(broadcastMessage(ChatColor.YELLOW + "Welcome to Myster's Server, " + ChatColor.BLUE + event.getPlayer().getDisplayName() + "."));
     }
 }

@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import static org.bukkit.Bukkit.broadcastMessage;
 
@@ -30,6 +31,11 @@ public final class Lobby extends JavaPlugin implements Listener {
         Player p = e.getPlayer();
         e.setJoinMessage(null);
         broadcastMessage(ChatColor.YELLOW + "Welcome to Myster's Server, " + ChatColor.AQUA + p.getDisplayName() + ".");
-        p.getWorld().playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 10.0f, 0.0f);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                p.getWorld().playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 500f, 1f);
+            }
+        }.runTaskLater(this, 10L);
     }
 }

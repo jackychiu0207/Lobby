@@ -30,6 +30,6 @@ public final class Lobby extends JavaPlugin implements Listener {
         Player p = e.getPlayer();
         e.setJoinMessage(null);
         broadcastMessage(ChatColor.YELLOW + "Welcome to Myster's Server, " + ChatColor.AQUA + p.getDisplayName() + ".");
-        p.getWorld().playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 10.0f, 10.0f);
+        p.getWorld().playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 10.0f, 0.0f);
     }
 }

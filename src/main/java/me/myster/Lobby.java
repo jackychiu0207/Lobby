@@ -1,7 +1,8 @@
 package me.myster;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -14,18 +15,21 @@ public final class Lobby extends JavaPlugin implements Listener {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        Bukkit.getLogger().info(ChatColor.RED + "Disabled" + this.getName());
+        System.out.println("Disabled" + this.getName());
     }
 
     @Override
     public void onEnable() {
         // Plugin startup logic
-        Bukkit.getLogger().info(ChatColor.GREEN + "Enabled" + this.getName());
+        System.out.println("Enabled" + this.getName());
+        getServer().getPluginManager().registerEvents(this, this);
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        System.out.println("test");
-        System.out.println(broadcastMessage(ChatColor.YELLOW + "Welcome to Myster's Server, " + ChatColor.BLUE + event.getPlayer().getDisplayName() + "."));
+    public void onPlayerJoin(PlayerJoinEvent e) {
+        Player p = e.getPlayer();
+        e.setJoinMessage(null);
+        broadcastMessage(ChatColor.YELLOW + "Welcome to Myster's Server, " + ChatColor.AQUA + p.getDisplayName() + ".");
+        p.getWorld().playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 10.0f, 10.0f);
     }
 }

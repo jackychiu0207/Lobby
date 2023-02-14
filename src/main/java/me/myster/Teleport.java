@@ -2,7 +2,6 @@ package me.myster;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,55 +9,18 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static org.bukkit.Bukkit.broadcastMessage;
 import static org.bukkit.Bukkit.createInventory;
 
-public final class Lobby extends JavaPlugin implements Listener {
-
-
-    public static Lobby getPlugin() {
-        return JavaPlugin.getPlugin(Lobby.class);
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-        System.out.println("Disabled " + this.getName());
-    }
-
-    @Override
-    public void onEnable() {
-        // Plugin startup logic
-        System.out.println("Enabled " + this.getName());
-        getServer().getPluginManager().registerEvents(this, this);
-    }
-
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) {
-        Player p = e.getPlayer();
-        e.setJoinMessage(null);
-        broadcastMessage(ChatColor.YELLOW + "Welcome to Myster's Server, " + ChatColor.AQUA + p.getDisplayName() + ".");
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                p.getWorld().playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f);
-            }
-        }.runTaskLater(this, 20L);
-
-    }
-
+public class Teleport implements Listener {
     @EventHandler
     public void teleportMenu(PlayerInteractEvent e) {
         Action a = e.getAction();
@@ -68,10 +30,10 @@ public final class Lobby extends JavaPlugin implements Listener {
         }
     }
 
-    class TeleportMenu {
+    static class TeleportMenu {
         public TeleportMenu() {
             // Create a new inventory, with no owner (as this isn't a real inventory), a size of nine, called example
-            inv = createInventory(null, 9, "傳送選單");
+            inv = createInventory(null, 5, "傳送選單");
             initializeItems();
         }
 

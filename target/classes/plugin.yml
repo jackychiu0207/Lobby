@@ -1,6 +1,0 @@
-name: Lobby
-version: '1.0-SNAPSHOT'
-main: me.myster.Lobby
-api-version: 1.19
-authors: [ Myster__ ]
-description: Lobby

@@ -36,6 +36,6 @@ public final class Lobby extends JavaPlugin implements Listener {
             public void run() {
                 p.getWorld().playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f);
             }
-        }.runTaskLater(this, 30L);
+        }.runTaskLater(this, 20L);
     }
 }

@@ -34,8 +34,8 @@ public final class Lobby extends JavaPlugin implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
-                p.getWorld().playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 500f, 1f);
+                p.getWorld().playSound(p, Sound.ENTITY_PLAYER_LEVELUP, 1f, 1f);
             }
-        }.runTaskLater(this, 10L);
+        }.runTaskLater(this, 30L);
     }
 }

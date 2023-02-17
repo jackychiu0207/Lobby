@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
 
-import static me.myster.Base.registerEvents;
+import static me.myster.base.Func.registerEvents;
 import static org.bukkit.Bukkit.createInventory;
 
 public class TeleportMenu implements Listener {

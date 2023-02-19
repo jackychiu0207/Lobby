@@ -6,7 +6,9 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -33,6 +35,15 @@ public class TeleportMenu implements Listener {
     }
 
     private final Inventory inv;
+
+    @EventHandler
+    public void teleportMenu(PlayerInteractEvent e) {
+        if (e.getAction() != Action.PHYSICAL)
+            if (e.getItem() != null && e.getItem().getType().equals(Material.COMPASS)) {
+                TeleportMenu tpMenu = new TeleportMenu();
+                tpMenu.openInventory(e.getPlayer());
+            }
+    }
 
     // You can call this whenever you want to put the items in
     public void initializeItems() {

@@ -17,7 +17,7 @@ public class TeleportNPC implements Listener {
     EntityPlayer npc;
 
     public EntityPlayer newTeleportNPC() {
-        npc = newNPC("world", "", new double[]{0.5, - 45, 7.5});
+        npc = newNPC("world", "test", new double[]{0.5, - 45, 7.5});
         return npc;
     }
 

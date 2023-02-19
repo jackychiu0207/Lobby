@@ -1,6 +1,7 @@
 package me.myster.base;
 
 import com.mojang.authlib.GameProfile;
+import net.minecraft.network.protocol.game.ClientboundPlayerInfoRemovePacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
 import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.server.level.WorldServer;
@@ -10,6 +11,7 @@ import org.bukkit.craftbukkit.v1_19_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
+import java.util.Collections;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -44,5 +46,10 @@ public abstract class Func {
     public static void addNPCPacket(EntityPlayer npc, Player player) {
         PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
         connection.a(new ClientboundPlayerInfoUpdatePacket(ClientboundPlayerInfoUpdatePacket.a.a, npc));
+    }
+
+    public static void removeNPCPacket(EntityPlayer npc, Player player) {
+        PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
+        connection.a(new ClientboundPlayerInfoRemovePacket(Collections.singletonList(npc.fD().getId())));
     }
 }

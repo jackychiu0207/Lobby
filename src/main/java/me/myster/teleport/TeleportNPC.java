@@ -1,7 +1,6 @@
 package me.myster.teleport;
 
-import net.minecraft.server.level.EntityPlayer;
-import org.bukkit.entity.Entity;
+import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -14,16 +13,16 @@ public class TeleportNPC implements Listener {
         registerEvents(this);
     }
 
-    EntityPlayer npc;
+    ServerPlayer npc;
 
-    public EntityPlayer newTeleportNPC() {
-        npc = newNPC("world", "test", new double[]{0.5, - 45, 7.5});
+    public ServerPlayer newTeleportNPC() {
+        npc = newNPC("world", "teleportNPC", new double[]{0.5, - 45.5, 7.5});
         return npc;
     }
 
     @EventHandler
     public void onNPCbeClicked(PlayerInteractEntityEvent e) {
-        if (! e.getRightClicked().equals((Entity) npc)) return;
+        if (! e.getRightClicked().getName().equals(npc.displayName)) return;
         new TeleportMenu().openInventory(e.getPlayer());
     }
 }
